@@ -1,9 +1,8 @@
-package task_3.com.epam.training.inner.validator;
+package task_3.com.epam.training.inner.utils.validator.fileValidator;
 
 import java.util.List;
 
 public interface IFileValidator {
-    boolean validateOnCharacter(List<String> task);
     boolean validateCapacity(String capacity, List<String> tasks);
     boolean validateMode(String mode);
 }

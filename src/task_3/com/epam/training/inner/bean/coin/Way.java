@@ -55,4 +55,15 @@ public class Way {
         }
         System.out.println();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder wayString = new StringBuilder();
+
+        for (int i = 0; i < coins.length - 1; i++) {
+            wayString.append(coins[i]).append(" ");
+        }
+
+        return wayString.toString();
+    }
 }

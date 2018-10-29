@@ -1,6 +1,7 @@
-package task_3.com.epam.training.inner.validator;
+package task_3.com.epam.training.inner.utils.validator.taskValidator;
 
-import task_3.com.epam.training.inner.WriterErrorMessage;
+import task_3.com.epam.training.inner.utils.writer.IWriterErrorMessage;
+import task_3.com.epam.training.inner.utils.validator.AbstractValidator;
 
 /**
  * Class for validate expression
@@ -10,7 +11,11 @@ import task_3.com.epam.training.inner.WriterErrorMessage;
  * @autor Asadchy Raman
  */
 
-public class CalculateTaskValidator implements ITaskValidator {
+public class CalculateTaskValidator extends AbstractValidator implements ITaskValidator{
+
+    public CalculateTaskValidator(IWriterErrorMessage writerErrorMessage) {
+        super(writerErrorMessage);
+    }
 
     @Override
     public boolean validateTask(String task) {
@@ -20,6 +25,7 @@ public class CalculateTaskValidator implements ITaskValidator {
     private boolean validateBrackets(String task){
         int openBrackets = 0;
         int closeBrackets = 0;
+
         for (char element : task.toCharArray()) {
             if (element == '(') {
                 openBrackets++;
@@ -29,15 +35,16 @@ public class CalculateTaskValidator implements ITaskValidator {
             }
         }
         if (openBrackets != closeBrackets) {
-            WriterErrorMessage.writeErrorWithBrackets();
+            getWriterErrorMessage().writeErrorWithBrackets();
             return false;
         }
+
         return true;
     }
 
     private boolean validateSymbol(String task) {
-        if (!task.matches("[\\d\\s+()*/-]*$")) {
-            WriterErrorMessage.writeErrorWithExpression();
+        if (!task.matches("[\\d\\s+()*/-]+$")) {
+            getWriterErrorMessage().writeErrorWithExpression();
             return false;
         }
         return true;
@@ -47,6 +54,7 @@ public class CalculateTaskValidator implements ITaskValidator {
         String s = task.replaceAll(" ", "");
         char[] a = s.toCharArray();
         boolean validate = true;
+
         for (int i = 0; i < s.length(); i++) {
             if (a[i] == '-') {
                 if (i == 0) {
@@ -69,8 +77,9 @@ public class CalculateTaskValidator implements ITaskValidator {
             }
         }
         if (!validate) {
-            WriterErrorMessage.writeErrorWithExpression();
+            getWriterErrorMessage().writeErrorWithExpression();
         }
+
         return validate;
     }
 

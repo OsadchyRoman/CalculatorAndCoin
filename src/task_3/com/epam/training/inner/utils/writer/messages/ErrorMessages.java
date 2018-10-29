@@ -1,4 +1,4 @@
-package task_3.com.epam.training.inner;
+package task_3.com.epam.training.inner.utils.writer.messages;
 
 public class ErrorMessages {
 
