@@ -7,6 +7,7 @@ import task_3.com.epam.training.inner.utils.writer.IWriterResult;
 import task_3.com.epam.training.inner.utils.validator.taskValidator.ITaskValidator;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static task_3.com.epam.training.inner.utils.ParsingTaskCoin.*;
@@ -34,7 +35,8 @@ public class CoinsMode extends AbstractMode implements IMode {
                             task.length()));
                     WaysGroup waysGroup = getAllExchanges(sumForExchange, denominationСoins);
                     List<Way> wayList = waysGroup.getWays();
-
+                    
+                    wayList.sort(Comparator.comparing(way -> way.getCoins().length));
                     Collections.reverse(wayList);
                     for (Way way : wayList) {
                         if (way.equals(wayList.get(wayList.size() - 1))) {
